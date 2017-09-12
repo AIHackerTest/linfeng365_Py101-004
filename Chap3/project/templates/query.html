@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/" method="post">
+        <p>
+            <input type="text" name="query" value="中山">
+            <input type="submit" name="action" value="submit">
+            <input type="submit" name="action" value="help">
+            <input type="submit" name="action" value="history">
+        </p>
+        {% if weather_dict %}
+        <p>
+            城市:{{weather_dict.location}}
+            <br> 白天天气:{{weather_dict.text_day}}
+            <br> 夜间天气:{{weather_dict.text_night}}
+            <br> 最高气温:{{weather_dict.maximum_temperature}}
+            <br> 最低气温:{{weather_dict.minimum_temperature}}
+            <br> 风向:{{weather_dict.wind_direction}}
+            <br> 风力:{{weather_dict.wind_scale}}
+        </p>
+        {% endif %} {% if history_list %} {% for i in history_list %}
+        <p>
+            城市:{{i.location}}
+            <br> 白天天气:{{i.text_day}}
+            <br> 夜间天气:{{i.text_night}}
+            <br> 最高气温:{{i.maximum_temperature}}
+            <br> 最低气温:{{i.minimum_temperature}}
+            <br> 风向:{{i.wind_direction}}
+            <br> 风力:{{i.wind_scale}}
+        </p>
+        {% endfor %} {% endif %}
+    </form>
+    {% if message %}
+    <p style="color:red">{{message}}</p>
+    {% endif %}
+</body>
+
+</html>
+{% if weather %}
+<h2 style="text-align:center">{{ weather.city }}</h2>
+<p style="text-align:center">
+    <br>天气：{{ weather.cond_txt }}</br>
+    <br>风向：{{ weather.wind_dir }}</br>
+    <br>温度：{{ weather.tmp }}°C</br>
+</p>
+{% endif %}
